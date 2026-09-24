@@ -97,41 +97,6 @@
 
             <div class="package-grid">
 
-                <!-- FOTOGRAFIA -->
-
-                <article class="package-card">
-
-                    <img class="package-background" src="images/album/festa.webp" alt="" aria-hidden="true">
-
-                    <div class="package-dark"></div>
-
-                    <div class="package-content">
-
-                        <div class="package-top">
-                            <span class="package-label">FOTOGRAFIA</span>
-                            <h3>R$500</h3>
-                        </div>
-
-                        <div class="package-bottom">
-
-                            <ul class="package-benefits">
-                                <li>4 horas de cobertura</li>
-                                <li>Fotos tratadas em alta resolução</li>
-                                <li>Prévia em até 24h</li>
-                            </ul>
-
-                            <a href="https://wa.me/5511930679044?text=Ol%C3%A1%21%20Quero%20a%20cobertura%20de%20fotografia%20de%20R%24500%20para%20minha%20festa." target="_blank" rel="noopener noreferrer" class="package-button">
-                                <img src="images/logo/whatsapp.png" class="wa-icon" width="20" height="20" alt="">
-                                Quero a cobertura da minha festa
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
                 <!-- FOTOGRAFIA + MINI ÁLBUM -->
 
                 <article class="package-card package-card-featured">
@@ -159,6 +124,41 @@
                             <a href="https://wa.me/5511930679044?text=Ol%C3%A1%21%20Quero%20a%20cobertura%20de%20fotografia%20com%20mini%20%C3%A1lbum%20de%20R%24900%20para%20minha%20festa." target="_blank" rel="noopener noreferrer" class="package-button">
                                 <img src="images/logo/whatsapp.png" class="wa-icon" width="20" height="20" alt="">
                                 Quero a cobertura com o álbum pra minha festa
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FOTOGRAFIA -->
+
+                <article class="package-card">
+
+                    <img class="package-background" src="images/album/festa.webp" alt="" aria-hidden="true">
+
+                    <div class="package-dark"></div>
+
+                    <div class="package-content">
+
+                        <div class="package-top">
+                            <span class="package-label">FOTOGRAFIA</span>
+                            <h3>R$500</h3>
+                        </div>
+
+                        <div class="package-bottom">
+
+                            <ul class="package-benefits">
+                                <li>4 horas de cobertura</li>
+                                <li>Fotos tratadas em alta resolução</li>
+                                <li>Prévia em até 24h</li>
+                            </ul>
+
+                            <a href="https://wa.me/5511930679044?text=Ol%C3%A1%21%20Quero%20a%20cobertura%20de%20fotografia%20de%20R%24500%20para%20minha%20festa." target="_blank" rel="noopener noreferrer" class="package-button">
+                                <img src="images/logo/whatsapp.png" class="wa-icon" width="20" height="20" alt="">
+                                Quero a cobertura da minha festa
                             </a>
 
                         </div>
@@ -547,84 +547,3 @@
                 velocity = 0;
 
                 startX = event.clientX;
-                lastX = event.clientX;
-                startPosition = position;
-                lastMoveTime = performance.now();
-
-                carousel.setPointerCapture(event.pointerId);
-                carousel.classList.add("dragging");
-
-            });
-
-
-            carousel.addEventListener("pointermove", function (event) {
-
-                if (!isDragging) {
-                    return;
-                }
-
-                const now = performance.now();
-                const dt = now - lastMoveTime;
-                const dx = event.clientX - lastX;
-
-                if (dt > 0) {
-                    velocity = 0.7 * (dx / dt) + 0.3 * velocity;
-                }
-
-                lastX = event.clientX;
-                lastMoveTime = now;
-
-                position = startPosition + (event.clientX - startX);
-
-                normalize();
-                render();
-
-            });
-
-
-            function stopDragging() {
-
-                if (!isDragging) {
-                    return;
-                }
-
-                isDragging = false;
-
-                /* se a pessoa parou antes de soltar, não há inércia */
-                if (performance.now() - lastMoveTime > 80) {
-                    velocity = 0;
-                }
-
-                momentum = Math.max(-MAX_MOMENTUM, Math.min(MAX_MOMENTUM, velocity));
-
-                carousel.classList.remove("dragging");
-
-            }
-
-
-            carousel.addEventListener("pointerup", stopDragging);
-            carousel.addEventListener("pointercancel", stopDragging);
-            carousel.addEventListener("lostpointercapture", stopDragging);
-
-
-            window.addEventListener("resize", function () {
-                measure();
-                normalize();
-                render();
-            });
-
-            window.addEventListener("load", function () {
-                measure();
-            });
-
-
-            measure();
-            requestAnimationFrame(animate);
-
-        })();
-
-    </script>
-
-</body>
-
-</html>
